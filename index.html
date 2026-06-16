@@ -22,29 +22,30 @@
   .mono{font-family:"SF Mono","SFMono-Regular","Roboto Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;}
   #app{max-width:480px;margin:0 auto;min-height:100vh;background:var(--paper);}
   button{font-family:inherit;cursor:pointer;border:none;background:none;}
-  input{font-family:inherit;}
+  input,textarea{font-family:inherit;}
 
   /* header */
-  .header{background:var(--ink);padding:20px 20px 16px;}
+  .header{padding:20px 20px 16px;}
   .hrow{display:flex;justify-content:space-between;align-items:flex-start;}
-  .brand{font-size:11px;font-weight:700;letter-spacing:.18em;color:#9AA6CC;}
-  .aim{font-size:14px;font-weight:600;color:#fff;margin-top:2px;}
-  .setbtn{font-size:12px;font-weight:600;color:#C9D2EC;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:7px;}
+  .brand{font-size:11px;font-weight:700;letter-spacing:.18em;}
+  .aim{font-size:14px;font-weight:600;margin-top:2px;}
+  .setbtn{font-size:12px;font-weight:600;padding:4px 10px;border-radius:7px;}
   .count{display:flex;align-items:flex-end;gap:10px;margin-top:14px;}
-  .clabel{font-size:14px;font-weight:500;color:#C9D2EC;padding-bottom:7px;}
-  .cnum{font-family:"SF Mono","Roboto Mono",Menlo,monospace;font-variant-numeric:tabular-nums;font-weight:700;font-size:46px;line-height:.9;letter-spacing:-.02em;color:#fff;}
-  .cnum.low{color:#FF8A7A;}
-  .cunit{font-size:16px;font-weight:700;color:#C9D2EC;padding-bottom:5px;}
-  .settings{margin-top:14px;background:rgba(255,255,255,.08);border-radius:10px;padding:14px;}
-  .slabel{display:block;font-size:13px;font-weight:700;color:#DCE2F2;margin-bottom:7px;}
+  .clabel{font-size:14px;font-weight:500;padding-bottom:7px;}
+  .cnum{font-family:"SF Mono","Roboto Mono",Menlo,monospace;font-variant-numeric:tabular-nums;font-weight:700;font-size:46px;line-height:.9;letter-spacing:-.02em;}
+  .cunit{font-size:16px;font-weight:700;padding-bottom:5px;}
+  .settings{margin-top:14px;border-radius:10px;padding:14px;}
+  .slabel{display:block;font-size:13px;font-weight:700;margin-bottom:7px;}
   .dateinput{background:var(--field);border:1px solid var(--line);color:var(--ink);font-size:14px;padding:8px 11px;border-radius:8px;}
   .dateinput.light{background:#fff;border:none;}
   .textinput{width:100%;background:#fff;color:var(--ink);font-size:15px;padding:10px 12px;border-radius:8px;border:none;}
   .textinput:focus{outline:none;}
+  .themerow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  .tswatch{width:32px;height:32px;border-radius:8px;padding:0;cursor:pointer;}
   .bkrow{display:flex;gap:8px;margin-top:6px;}
-  .bkbtn{flex:1;font-size:14px;font-weight:700;color:#fff;background:rgba(255,255,255,.16);padding:10px 6px;border-radius:8px;text-align:center;}
-  .bkhint{font-size:12.5px;color:#BCC5E0;margin-top:9px;line-height:1.6;}
-  .reset{display:block;margin-top:16px;font-size:13px;font-weight:600;color:#FF8A7A;}
+  .bkbtn{flex:1;font-size:14px;font-weight:700;padding:10px 6px;border-radius:8px;text-align:center;}
+  .bkhint{font-size:12.5px;margin-top:9px;line-height:1.6;}
+  .reset{display:block;margin-top:16px;font-size:13px;font-weight:600;}
 
   /* tabs */
   .tabs{display:flex;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;}
@@ -54,6 +55,7 @@
 
   .body{padding:16px;animation:fade .25s ease;}
   @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+  @keyframes rise{from{transform:translateY(20px);}to{transform:none;}}
   .foot{text-align:center;font-size:12px;color:#9AA1B5;padding:8px 16px 26px;line-height:1.55;}
 
   .sect{margin-bottom:18px;}
@@ -84,6 +86,9 @@
   .ustage{font-size:11px;color:var(--ink-soft);flex-shrink:0;}
   .utext{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .utime{font-size:12px;font-weight:600;color:var(--ink-soft);flex-shrink:0;}
+  .rechead{display:flex;justify-content:space-between;align-items:center;}
+  .recdel{flex-shrink:0;width:30px;height:30px;border-radius:8px;background:#F2F4F8;color:#8089A0;font-size:14px;font-weight:700;line-height:1;}
+  .recdel:active{background:#FBE9E7;color:var(--urgent);}
 
   /* form */
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:18px;}
@@ -94,11 +99,18 @@
   .link{font-size:12px;font-weight:600;color:var(--brand);}
   .chips{display:flex;flex-wrap:wrap;gap:8px;}
   .chip{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:7px 12px;border-radius:999px;background:#F2F4F8;border:1px solid var(--line);color:var(--ink);}
-  .chip .x{color:var(--urgent);font-weight:700;}
   .addrow{display:flex;gap:8px;margin-top:12px;}
   .input{width:100%;background:var(--field);border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:14px;color:var(--ink);}
   .input:focus{outline:none;border-color:var(--brand);}
   .addbtn{flex-shrink:0;font-size:14px;font-weight:700;color:#fff;background:var(--brand);padding:0 16px;border-radius:9px;}
+  .editlist{display:flex;flex-direction:column;gap:8px;}
+  .editrow{display:flex;align-items:center;gap:11px;background:var(--field);border:1px solid var(--line);border-radius:10px;padding:8px 10px 8px 12px;}
+  .editname{flex:1;font-size:14px;font-weight:600;color:var(--ink);}
+  .delbtn{flex-shrink:0;font-size:12px;font-weight:700;color:var(--urgent);background:#FBE9E7;padding:7px 12px;border-radius:8px;}
+  .edithint{font-size:12.5px;color:var(--ink-soft);margin-top:11px;line-height:1.55;}
+  input[type=color].colorswatch{-webkit-appearance:none;appearance:none;width:32px;height:32px;flex-shrink:0;border:none;border-radius:8px;padding:0;background:none;cursor:pointer;}
+  input[type=color].colorswatch::-webkit-color-swatch-wrapper{padding:0;}
+  input[type=color].colorswatch::-webkit-color-swatch{border:none;border-radius:8px;}
   .timerow{display:flex;align-items:center;gap:8px;}
   .numin{width:60px;text-align:center;background:var(--field);border:1px solid var(--line);border-radius:9px;padding:10px 4px;font-size:14px;color:var(--ink);}
   .numin:focus{outline:none;border-color:var(--brand);}
@@ -130,7 +142,25 @@
   .grandlbl{font-size:13px;font-weight:600;color:var(--ink-soft);}
   .grandnum{font-size:18px;font-weight:700;}
 
-  @media (prefers-reduced-motion: reduce){.body{animation:none;}}
+  /* modal + confirm + toast */
+  .overlay{position:fixed;inset:0;background:rgba(18,22,38,.55);display:flex;align-items:flex-end;justify-content:center;z-index:50;animation:fade .2s ease;}
+  .overlay.ct{align-items:center;padding:24px;z-index:60;}
+  .modal{background:var(--card);width:100%;max-width:480px;border-radius:18px 18px 0 0;padding:20px 18px calc(22px + env(safe-area-inset-bottom));max-height:86vh;overflow:auto;animation:rise .25s ease;}
+  .cmodal{background:var(--card);width:100%;max-width:380px;border-radius:16px;padding:20px;animation:fade .2s ease;}
+  .mtitle{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--ink);}
+  .mtext{font-size:13px;color:var(--ink-soft);line-height:1.65;margin-bottom:12px;}
+  .cbody{font-size:14px;color:var(--ink);line-height:1.65;white-space:pre-wrap;}
+  .marea{width:100%;height:150px;font-family:"SF Mono","Roboto Mono",Menlo,monospace;font-size:11px;background:var(--field);border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--ink);resize:none;line-height:1.4;}
+  .marea:focus{outline:none;border-color:var(--brand);}
+  .mbtns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .mbtn{flex:1;min-width:104px;padding:13px;border-radius:10px;font-size:14px;font-weight:700;background:var(--brand);color:#fff;text-align:center;}
+  .mbtn:active{opacity:.85;}
+  .mbtn.sec{background:#EEF1F6;color:var(--ink);}
+  .mbtn.danger{background:var(--urgent);}
+  .toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(12px);background:rgba(20,24,40,.96);color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:24px;z-index:100;opacity:0;transition:opacity .25s,transform .25s;max-width:88%;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.3);}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){.body,.overlay,.modal,.cmodal{animation:none;}}
 </style>
 </head>
 <body>
@@ -143,20 +173,24 @@
   const DAY=86400000;
 
   const DEFAULT_SUBJECTS=[
-    {name:'国語', color:'#C0504D'},
-    {name:'数学IA', color:'#3B5BA5'},
-    {name:'数学IIBC', color:'#6E8FD6'},
-    {name:'英語リーディング', color:'#2F7A52'},
-    {name:'英語リスニング', color:'#5FA88F'},
-    {name:'物理基礎', color:'#E0A458'},
-    {name:'化学基礎', color:'#8E6FB0'},
-    {name:'地理総合', color:'#5B9279'},
-    {name:'政治経済', color:'#9A7B4F'},
-    {name:'情報', color:'#4A4E69'},
+    {name:'国語', color:'#E4434A'},
+    {name:'数学IA', color:'#2D74C4'},
+    {name:'数学IIBC', color:'#8B4FCB'},
+    {name:'英語リーディング', color:'#34A05A'},
+    {name:'英語リスニング', color:'#14A8B8'},
+    {name:'物理基礎', color:'#F0822E'},
+    {name:'化学基礎', color:'#D9A41F'},
+    {name:'地理総合', color:'#E467A6'},
+    {name:'政治経済', color:'#8A5A3C'},
+    {name:'情報', color:'#5B6477'},
   ];
-  const FALLBACK=['#3B5BA5','#2F7A52','#C0504D','#E0A458','#8E6FB0','#5FA88F','#C77DA0','#7A8B5A','#4A4E69','#A0855B'];
+  const FALLBACK=['#E4434A','#2D74C4','#34A05A','#F0822E','#8B4FCB','#14A8B8','#E467A6','#D9A41F','#8A5A3C','#5B6477'];
   const DEFAULT_EXAM='2027-01-17';
   const DEFAULT_SCHOOL='神戸大学';
+  const DEFAULT_THEME='#1E2749';
+  const THEME_PRESETS=['#1E2749','#222831','#17352B','#3A2342','#13324A','#3A2018'];
+  const COLOR_VER=2;
+  const OLD_DEFAULTS={'国語':'#C0504D','数学IA':'#3B5BA5','数学IIBC':'#6E8FD6','英語リーディング':'#2F7A52','英語リスニング':'#5FA88F','物理基礎':'#E0A458','化学基礎':'#8E6FB0','地理総合':'#5B9279','政治経済':'#9A7B4F','情報':'#4A4E69'};
   const STAGES=[
     {key:'day1',label:'1日後',short:'1日',days:1},
     {key:'week1',label:'1週間後',short:'1週',days:7},
@@ -173,20 +207,63 @@
   function todayISO(){return isoDate(new Date());}
   function fmtMD(d){return (d.getMonth()+1)+'月'+d.getDate()+'日';}
   function fmtMin(min){const h=Math.floor(min/60),m=min%60;if(h&&m)return h+'時間'+m+'分';if(h)return h+'時間';return m+'分';}
+  function luminance(hex){
+    let c=String(hex||'').replace('#','');
+    if(c.length===3)c=c[0]+c[0]+c[1]+c[1]+c[2]+c[2];
+    if(c.length<6)return 0;
+    const r=parseInt(c.substr(0,2),16)/255,g=parseInt(c.substr(2,2),16)/255,b=parseInt(c.substr(4,2),16)/255;
+    const f=v=>v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4);
+    return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b);
+  }
+  function headerTheme(bg){
+    const dark=luminance(bg)<0.5;
+    if(dark)return {bg:bg,main:'#ffffff',sub:'rgba(255,255,255,0.82)',faint:'rgba(255,255,255,0.6)',btn:'rgba(255,255,255,0.15)',panel:'rgba(255,255,255,0.08)',panelLabel:'rgba(255,255,255,0.9)',hint:'rgba(255,255,255,0.7)',low:'#FF8A7A',reset:'#FF8A7A',ring:'rgba(255,255,255,0.75)'};
+    return {bg:bg,main:'#1E2749',sub:'rgba(30,39,73,0.78)',faint:'rgba(30,39,73,0.5)',btn:'rgba(0,0,0,0.07)',panel:'rgba(0,0,0,0.05)',panelLabel:'rgba(30,39,73,0.85)',hint:'rgba(30,39,73,0.6)',low:'#C0392B',reset:'#C0392B',ring:'rgba(30,39,73,0.45)'};
+  }
+  function toast(msg){
+    const old=document.getElementById('toast');if(old)old.remove();
+    const d=document.createElement('div');d.id='toast';d.className='toast';d.textContent=msg;
+    document.body.appendChild(d);
+    requestAnimationFrame(function(){d.classList.add('show');});
+    setTimeout(function(){d.classList.remove('show');setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},300);},2300);
+  }
 
   /* storage (localStorage + in-memory fallback) */
   function load(){try{const r=localStorage.getItem(STORAGE_KEY);if(r)return JSON.parse(r);}catch(e){}return null;}
   function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}catch(e){}}
-  function defaultData(){return {school:DEFAULT_SCHOOL,subjects:DEFAULT_SUBJECTS.map(s=>({name:s.name,color:s.color})),entries:[],examDate:DEFAULT_EXAM};}
+  function defaultData(){return {school:DEFAULT_SCHOOL,themeColor:DEFAULT_THEME,subjects:DEFAULT_SUBJECTS.map(s=>({name:s.name,color:s.color})),entries:[],examDate:DEFAULT_EXAM,colorVer:COLOR_VER};}
+  function freshUi(){return {tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false,modal:null,modalText:'',showAllRecords:false,confirm:null};}
 
   let data=load()||defaultData();
   if(!data.subjects||!data.subjects.length)data.subjects=DEFAULT_SUBJECTS.map(s=>({name:s.name,color:s.color}));
   if(!Array.isArray(data.entries))data.entries=[];
   if(!data.examDate)data.examDate=DEFAULT_EXAM;
   if(typeof data.school!=='string')data.school=DEFAULT_SCHOOL;
+  if(typeof data.themeColor!=='string')data.themeColor=DEFAULT_THEME;
+  if(data.colorVer!==COLOR_VER){
+    const nd={};DEFAULT_SUBJECTS.forEach(s=>nd[s.name]=s.color);
+    data.subjects.forEach(s=>{
+      if(OLD_DEFAULTS[s.name]&&typeof s.color==='string'&&s.color.toLowerCase()===OLD_DEFAULTS[s.name].toLowerCase()&&nd[s.name]){s.color=nd[s.name];}
+    });
+    const sm={};data.subjects.forEach(s=>sm[s.name]=s.color);
+    data.entries.forEach(e=>{if(sm[e.subject])e.color=sm[e.subject];});
+    data.colorVer=COLOR_VER;
+    persist();
+  }
 
-  let ui={tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false};
+  let ui=freshUi();
   let form={subjectIdx:0,content:'',hours:'',mins:'',date:todayISO()};
+  let pendingImport=null;
+
+  /* import (shared by text-paste and file): validate then ask to confirm */
+  function applyImport(text){
+    let obj;
+    try{obj=JSON.parse(text);}catch(e){toast('読み込めませんでした。文章が正しいかご確認ください');return;}
+    if(!obj||!Array.isArray(obj.entries)||!Array.isArray(obj.subjects)){toast('このアプリのバックアップではないようです');return;}
+    pendingImport=obj;
+    ui.confirm={body:'現在の学習データを、このバックアップの内容で置き換えます。よろしいですか？',ok:'読み込む',danger:false,action:'import'};
+    render();
+  }
 
   /* donut chart (manual SVG, no libraries) */
   function polar(cx,cy,r,deg){const rad=deg*Math.PI/180;return [cx+r*Math.sin(rad),cy-r*Math.cos(rad)];}
@@ -241,30 +318,42 @@
 
   /* render pieces */
   function headerHTML(){
+    const t=headerTheme(data.themeColor||DEFAULT_THEME);
     const days=Math.ceil((startOfDay(parseDate(data.examDate)).getTime()-startOfDay(new Date()).getTime())/DAY);
     const low=days<=60;
-    return '<div class="header"><div class="hrow"><div>'+
-      '<div class="brand">STUDY TRACKER</div><div class="aim">'+(data.school?esc(data.school)+' 志望':'志望校を設定してください')+'</div></div>'+
-      '<button class="setbtn" onclick="App.toggleSettings()">設定</button></div>'+
-      '<div class="count"><span class="clabel">共通テストまで</span>'+
-      '<span class="cnum'+(low?' low':'')+'">'+(days>=0?days:0)+'</span><span class="cunit">日</span></div>'+
-      (ui.settingsOpen?
-        '<div class="settings">'+
-        '<label class="slabel">志望校</label>'+
+    let h='<div class="header" style="background:'+t.bg+'">';
+    h+='<div class="hrow"><div>'+
+       '<div class="brand" style="color:'+t.faint+'">STUDY TRACKER</div>'+
+       '<div class="aim" style="color:'+t.main+'">'+(data.school?esc(data.school)+' 志望':'志望校を設定してください')+'</div></div>'+
+       '<button class="setbtn" style="color:'+t.sub+';background:'+t.btn+'" onclick="App.toggleSettings()">設定</button></div>';
+    h+='<div class="count"><span class="clabel" style="color:'+t.sub+'">共通テストまで</span>'+
+       '<span class="cnum" style="color:'+(low?t.low:t.main)+'">'+(days>=0?days:0)+'</span>'+
+       '<span class="cunit" style="color:'+t.sub+'">日</span></div>';
+    if(ui.settingsOpen){
+      const presets=THEME_PRESETS.map(c=>{
+        const sel=c.toLowerCase()===(data.themeColor||'').toLowerCase();
+        return '<button class="tswatch" style="background:'+c+';border:2px solid '+t.ring+';'+(sel?'box-shadow:0 0 0 2px '+t.bg+',0 0 0 4px '+t.main+';':'')+'" onclick="App.setTheme(\''+c+'\')"></button>';
+      }).join('');
+      h+='<div class="settings" style="background:'+t.panel+'">'+
+        '<label class="slabel" style="color:'+t.panelLabel+'">志望校</label>'+
         '<input type="text" value="'+esc(data.school)+'" placeholder="例：神戸大学" onchange="App.setSchool(this.value)" class="textinput"/>'+
-        '<label class="slabel" style="margin-top:16px">試験日</label>'+
+        '<label class="slabel" style="color:'+t.panelLabel+';margin-top:16px">試験日</label>'+
         '<input type="date" value="'+data.examDate+'" onchange="App.setExam(this.value)" class="dateinput light"/>'+
-        '<p class="bkhint">共通テストの正式な日程に合わせて設定してください。設定した日付をもとに、トップの残り日数が表示されます。</p>'+
-        '<label class="slabel" style="margin-top:16px">学習データのバックアップ</label>'+
+        '<p class="bkhint" style="color:'+t.hint+'">共通テストの正式な日程に合わせて設定してください。設定した日付をもとに、トップの残り日数が表示されます。</p>'+
+        '<label class="slabel" style="color:'+t.panelLabel+';margin-top:16px">トップ画面の色</label>'+
+        '<div class="themerow">'+presets+'<input type="color" class="colorswatch" style="box-shadow:0 0 0 2px '+t.ring+'" value="'+(data.themeColor||DEFAULT_THEME)+'" onchange="App.setTheme(this.value)"/></div>'+
+        '<p class="bkhint" style="color:'+t.hint+'">並んだ色から選ぶか、右端の四角をタップして好きな色を選べます。文字色は自動で見やすく調整されます。</p>'+
+        '<label class="slabel" style="color:'+t.panelLabel+';margin-top:16px">学習データのバックアップ</label>'+
         '<div class="bkrow">'+
-          '<button class="bkbtn" onclick="App.exportData()">書き出す</button>'+
-          '<button class="bkbtn" onclick="document.getElementById(\'importFile\').click()">読み込む</button>'+
+          '<button class="bkbtn" style="color:'+t.main+';background:'+t.btn+'" onclick="App.openExport()">書き出す</button>'+
+          '<button class="bkbtn" style="color:'+t.main+';background:'+t.btn+'" onclick="App.openImport()">読み込む</button>'+
         '</div>'+
-        '<input id="importFile" type="file" accept="application/json,.json" style="display:none" onchange="App.importData(event)"/>'+
-        '<p class="bkhint">「書き出す」を押すと、これまでの学習データをファイルとして保存できます。機種変更やデータの消去に備えて、ときどき保存しておくと安心です。元に戻したいときは「読み込む」から、保存したファイルを選んでください。</p>'+
-        '<button class="reset" onclick="App.reset()">すべての学習データを削除する</button>'+
-        '</div>':'')+
-      '</div>';
+        '<p class="bkhint" style="color:'+t.hint+'">「書き出す」で学習データを保存し、「読み込む」で復元できます。機種変更やデータの消去に備えて、ときどき保存しておくと安心です。</p>'+
+        '<button class="reset" style="color:'+t.reset+'" onclick="App.askReset()">すべての学習データを削除する</button>'+
+        '</div>';
+    }
+    h+='</div>';
+    return h;
   }
   function tabsHTML(){
     const dc=dueCount();
@@ -303,23 +392,38 @@
   function recordHTML(){
     const subs=data.subjects;
     const chips=subs.map((s,i)=>{
-      const on=i===form.subjectIdx&&!ui.editSubjects;
-      return '<button class="chip'+(on?' on':'')+'" style="'+(on?'background:'+s.color+';border-color:'+s.color+';color:#fff':'')+'" onclick="App.'+(ui.editSubjects?'removeSub':'pickSub')+'('+i+')">'+
-        (on?'':'<span class="dot sm" style="background:'+s.color+'"></span>')+esc(s.name)+(ui.editSubjects?'<span class="x">×</span>':'')+'</button>';
+      const on=i===form.subjectIdx;
+      return '<button class="chip'+(on?' on':'')+'" style="'+(on?'background:'+s.color+';border-color:'+s.color+';color:#fff':'')+'" onclick="App.pickSub('+i+')">'+
+        (on?'':'<span class="dot sm" style="background:'+s.color+'"></span>')+esc(s.name)+'</button>';
     }).join('');
-    const recent=data.entries.slice().sort((a,b)=>a.createdAt<b.createdAt?1:-1).slice(0,6);
+    const editList=subs.map((s,i)=>
+      '<div class="editrow">'+
+        '<input type="color" class="colorswatch" style="box-shadow:0 0 0 1px var(--line)" value="'+s.color+'" onchange="App.setSubColor('+i+',this.value)"/>'+
+        '<span class="editname">'+esc(s.name)+'</span>'+
+        (subs.length>1?'<button class="delbtn" onclick="App.removeSub('+i+')">削除</button>':'')+
+      '</div>').join('');
+    const all=data.entries.slice().sort((a,b)=>a.createdAt<b.createdAt?1:-1);
+    const shown=ui.showAllRecords?all:all.slice(0,6);
     let recentHTML='';
-    if(recent.length){
-      recentHTML='<div class="sect"><h3 class="h3">最近の記録</h3><div class="list">'+recent.map(e=>
-        '<div class="ucard"><span class="dot sm" style="background:'+e.color+'"></span>'+
-        '<span class="udate">'+fmtMD(parseDate(e.date))+'</span><span class="utext">'+esc(e.content)+'</span>'+
-        '<span class="utime mono">'+fmtMin(e.minutes)+'</span></div>').join('')+'</div></div>';
+    if(all.length){
+      recentHTML='<div class="sect"><div class="rechead"><h3 class="h3" style="margin:0">最近の記録</h3>'+
+        (all.length>6?'<button class="link" onclick="App.toggleAllRecords()">'+(ui.showAllRecords?'最近のみ表示':'すべて表示（'+all.length+'件）')+'</button>':'')+
+        '</div><div class="list" style="margin-top:8px">'+shown.map(e=>
+          '<div class="ucard"><span class="dot sm" style="background:'+e.color+'"></span>'+
+          '<span class="udate">'+fmtMD(parseDate(e.date))+'</span>'+
+          '<span class="utext">'+esc(e.content)+'</span>'+
+          '<span class="utime mono">'+fmtMin(e.minutes)+'</span>'+
+          '<button class="recdel" onclick="App.askDelete(\''+e.id+'\')">✕</button></div>').join('')+
+        '</div></div>';
     }
     return '<div class="card">'+
       '<div class="field"><div class="fhead"><label class="flabel">科目</label>'+
         '<button class="link" onclick="App.toggleEdit()">'+(ui.editSubjects?'完了':'科目を編集')+'</button></div>'+
-        '<div class="chips">'+chips+'</div>'+
-        (ui.editSubjects?'<div class="addrow"><input id="newsub" class="input" placeholder="追加したい科目を入力（例：倫理）"/><button class="addbtn" onclick="App.addSub()">追加</button></div>':'')+
+        (ui.editSubjects
+          ? '<div class="editlist">'+editList+'</div>'+
+            '<div class="addrow"><input id="newsub" class="input" placeholder="追加したい科目を入力（例：倫理）"/><button class="addbtn" onclick="App.addSub()">追加</button></div>'+
+            '<p class="edithint">左の四角い色をタップすると、その科目の色を自由に変えられます。「削除」で科目を消せます。</p>'
+          : '<div class="chips">'+chips+'</div>')+
       '</div>'+
       '<div class="field"><label class="flabel">学習内容</label>'+
         '<input id="f_content" class="input" placeholder="例：英語長文 Unit5、ベクトルの内積 など" value="'+esc(form.content)+'" oninput="App.setF(\'content\',this.value)"/></div>'+
@@ -358,6 +462,41 @@
     return toggle+body+
       '<div class="grand"><span class="grandlbl">これまでの総学習時間</span><span class="grandnum mono">'+fmtMin(grand)+'</span></div>';
   }
+  function modalHTML(){
+    if(!ui.modal)return '';
+    let inner='';
+    if(ui.modal==='export'){
+      inner='<div class="mtitle">学習データの書き出し</div>'+
+        '<p class="mtext">下のテキストが、これまでの学習データです。「コピー」を押して、メモアプリやメール（自分宛て）などに貼り付けて保存してください。うまくコピーできない場合は、文章を長押しして選択し、コピーすることもできます。</p>'+
+        '<textarea class="marea" id="modalText" readonly>'+esc(ui.modalText||'')+'</textarea>'+
+        '<div class="mbtns">'+
+          '<button class="mbtn" onclick="App.copyExport()">コピー</button>'+
+          (navigator.share?'<button class="mbtn sec" onclick="App.shareExport()">共有・保存</button>':'')+
+          '<button class="mbtn sec" onclick="App.closeModal()">閉じる</button>'+
+        '</div>';
+    }else if(ui.modal==='import'){
+      inner='<div class="mtitle">バックアップから復元</div>'+
+        '<p class="mtext">保存しておいたバックアップの文章を、下の枠に貼り付けて「読み込む」を押してください。ファイルとして保存している場合は「ファイルから選ぶ」が使えます。</p>'+
+        '<textarea class="marea" id="importText" placeholder="ここにバックアップの文章を貼り付けてください"></textarea>'+
+        '<input id="importFile" type="file" accept="application/json,.json" style="display:none" onchange="App.importData(event)"/>'+
+        '<div class="mbtns">'+
+          '<button class="mbtn" onclick="App.doImportText()">読み込む</button>'+
+          '<button class="mbtn sec" onclick="document.getElementById(\'importFile\').click()">ファイルから選ぶ</button>'+
+          '<button class="mbtn sec" onclick="App.closeModal()">閉じる</button>'+
+        '</div>';
+    }
+    return '<div class="overlay" onclick="App.closeModal()"><div class="modal" onclick="event.stopPropagation()">'+inner+'</div></div>';
+  }
+  function confirmHTML(){
+    if(!ui.confirm)return '';
+    const c=ui.confirm;
+    return '<div class="overlay ct" onclick="App.confirmCancel()"><div class="cmodal" onclick="event.stopPropagation()">'+
+      '<p class="cbody">'+esc(c.body)+'</p>'+
+      '<div class="mbtns">'+
+        '<button class="mbtn'+(c.danger?' danger':'')+'" onclick="App.confirmProceed()">'+esc(c.ok||'OK')+'</button>'+
+        '<button class="mbtn sec" onclick="App.confirmCancel()">キャンセル</button>'+
+      '</div></div></div>';
+  }
 
   function render(){
     let c;
@@ -366,7 +505,8 @@
     else c=statsHTML();
     document.getElementById('app').innerHTML=
       headerHTML()+tabsHTML()+'<div class="body">'+c+'</div>'+
-      '<div class="foot">学習の記録は自動的に保存され、次にこのアプリを開いたときもそのまま残ります。</div>';
+      '<div class="foot">学習の記録は自動的に保存され、次にこのアプリを開いたときもそのまま残ります。</div>'+
+      modalHTML()+confirmHTML();
     if(ui.tab==='record')refresh();
   }
 
@@ -388,12 +528,35 @@
     toggleSettings(){ui.settingsOpen=!ui.settingsOpen;render();},
     setExam(v){data.examDate=v;persist();render();},
     setSchool(v){data.school=v.trim();persist();render();},
-    reset(){if(confirm('すべての学習データを削除します。この操作は取り消せませんので、ご注意ください。\n\n念のため、先に「書き出す」でバックアップを取っておくことをおすすめします。よろしいですか？')){data=defaultData();ui={tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false};form={subjectIdx:0,content:'',hours:'',mins:'',date:todayISO()};persist();render();}},
+    setTheme(v){data.themeColor=v;persist();render();},
+    askReset(){ui.confirm={body:'すべての学習データを削除します。この操作は取り消せません。\n\n念のため、先に「書き出す」でバックアップを取っておくことをおすすめします。本当に削除しますか？',ok:'すべて削除する',danger:true,action:'reset'};render();},
     markDone(id,key){const e=data.entries.find(x=>x.id===id);if(e){e.reviews[key]=true;persist();render();}},
+    askDelete(id){const e=data.entries.find(x=>x.id===id);if(!e)return;ui.confirm={body:'この記録を削除します。よろしいですか？\n\n'+e.subject+'：'+e.content+'（'+fmtMin(e.minutes)+'）',ok:'削除する',danger:true,action:'delete',arg:id};render();},
+    confirmCancel(){if(ui.confirm&&ui.confirm.action==='import')pendingImport=null;ui.confirm=null;render();},
+    confirmProceed(){
+      const c=ui.confirm;ui.confirm=null;
+      if(!c){render();return;}
+      if(c.action==='delete'){
+        data.entries=data.entries.filter(x=>x.id!==c.arg);persist();render();toast('記録を削除しました');
+      }else if(c.action==='reset'){
+        data=defaultData();ui=freshUi();form={subjectIdx:0,content:'',hours:'',mins:'',date:todayISO()};persist();render();toast('データを初期化しました');
+      }else if(c.action==='import'){
+        if(pendingImport){
+          data=pendingImport;pendingImport=null;
+          if(!data.examDate)data.examDate=DEFAULT_EXAM;
+          if(typeof data.school!=='string')data.school=DEFAULT_SCHOOL;
+          if(typeof data.themeColor!=='string')data.themeColor=DEFAULT_THEME;
+          if(typeof data.colorVer!=='number')data.colorVer=COLOR_VER;
+          persist();ui.modal=null;ui.settingsOpen=false;render();toast('学習データを読み込みました');
+        }else{render();}
+      }else{render();}
+    },
+    toggleAllRecords(){ui.showAllRecords=!ui.showAllRecords;render();},
     pickSub(i){form.subjectIdx=i;render();},
     toggleEdit(){ui.editSubjects=!ui.editSubjects;render();},
     addSub(){const el=document.getElementById('newsub');if(!el)return;const name=el.value.trim();if(!name||data.subjects.some(s=>s.name===name))return;const color=FALLBACK[data.subjects.length%FALLBACK.length];data.subjects.push({name,color});form.subjectIdx=data.subjects.length-1;persist();render();},
     removeSub(i){if(data.subjects.length<=1)return;data.subjects.splice(i,1);if(form.subjectIdx>=data.subjects.length)form.subjectIdx=data.subjects.length-1;persist();render();},
+    setSubColor(i,color){const s=data.subjects[i];if(!s)return;const nm=s.name;s.color=color;data.entries.forEach(e=>{if(e.subject===nm)e.color=color;});persist();render();},
     setF(f,v){form[f]=v;refresh();},
     quick(m){form.hours=String(Math.floor(m/60));form.mins=String(m%60);render();},
     setDate(v){form.date=v;refresh();},
@@ -403,51 +566,48 @@
       const minutes=(parseInt(form.hours)||0)*60+(parseInt(form.mins)||0);
       data.entries.push({id:uid(),subject:s.name,color:s.color,content:form.content.trim(),minutes,date:form.date,createdAt:new Date().toISOString(),reviews:{day1:false,week1:false,month1:false}});
       form.content='';form.hours='';form.mins='';
-      persist();render();
+      persist();render();toast('記録しました');
     },
     setRange(r){ui.statsRange=r;render();},
-    async exportData(){
-      const json=JSON.stringify(data,null,2);
-      const stamp=isoDate(new Date()).replace(/-/g,'');
-      const filename='study-tracker-backup-'+stamp+'.json';
-      try{
-        if(navigator.canShare){
-          const file=new File([json],filename,{type:'application/json'});
-          if(navigator.canShare({files:[file]})){
-            await navigator.share({files:[file],title:'学習データのバックアップ'});
-            return;
-          }
-        }
-      }catch(e){return;}
-      try{
-        const blob=new Blob([json],{type:'application/json'});
-        const url=URL.createObjectURL(blob);
-        const a=document.createElement('a');
-        a.href=url;a.download=filename;
-        document.body.appendChild(a);a.click();
-        setTimeout(function(){URL.revokeObjectURL(url);a.remove();},1500);
-      }catch(e2){
-        window.prompt('下のテキストがあなたの学習データです。すべて選択してコピーし、メモアプリなどに保存しておいてください。',json);
+    openExport(){ui.modalText=JSON.stringify(data,null,2);ui.modal='export';render();},
+    openImport(){ui.modal='import';render();},
+    closeModal(){ui.modal=null;render();},
+    copyExport(){
+      const txt=ui.modalText||'';
+      const ta=document.getElementById('modalText');
+      if(ta){ta.focus();ta.select();try{ta.setSelectionRange(0,txt.length);}catch(e){}}
+      const ok=function(){toast('コピーしました');};
+      const ng=function(){toast('自動コピーできませんでした。文章を長押しして選択しコピーしてください');};
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(ok).catch(function(){
+          try{if(document.execCommand('copy'))ok();else ng();}catch(e){ng();}
+        });
+      }else{
+        try{if(document.execCommand('copy'))ok();else ng();}catch(e){ng();}
       }
+    },
+    async shareExport(){
+      const txt=ui.modalText||'';
+      try{
+        const file=new File([txt],'study-tracker-backup.json',{type:'application/json'});
+        if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'学習データのバックアップ'});return;}
+        if(navigator.share){await navigator.share({text:txt,title:'学習データのバックアップ'});return;}
+        toast('この画面では共有を使えません。「コピー」で保存してください');
+      }catch(e){
+        if(e&&e.name==='AbortError')return;
+        toast('共有できませんでした。「コピー」で保存してください');
+      }
+    },
+    doImportText(){
+      const ta=document.getElementById('importText');
+      if(!ta||!ta.value.trim()){toast('バックアップの文章を貼り付けてください');return;}
+      applyImport(ta.value);
     },
     importData(ev){
       const file=ev.target.files&&ev.target.files[0];
       if(!file){return;}
       const reader=new FileReader();
-      reader.onload=function(){
-        try{
-          const obj=JSON.parse(reader.result);
-          if(!obj||!Array.isArray(obj.entries)||!Array.isArray(obj.subjects)){alert('このファイルは、このアプリのバックアップではないようです。学習トラッカーから「書き出す」で保存したファイルを選んでください。');return;}
-          if(!confirm('現在の学習データを、選んだバックアップの内容で置き換えます。よろしいですか？')){return;}
-          data=obj;
-          if(!data.examDate){data.examDate=DEFAULT_EXAM;}
-          if(typeof data.school!=='string'){data.school=DEFAULT_SCHOOL;}
-          persist();
-          ui.settingsOpen=false;
-          render();
-          alert('学習データを読み込みました。');
-        }catch(e){alert('読み込みに失敗しました。ファイルが壊れているか、形式が異なる可能性があります。');}
-      };
+      reader.onload=function(){applyImport(reader.result);};
       reader.readAsText(file);
       ev.target.value='';
     }
