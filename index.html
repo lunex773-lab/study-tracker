@@ -40,8 +40,8 @@
   .dateinput.light{background:#fff;border:none;}
   .textinput{width:100%;background:#fff;color:var(--ink);font-size:15px;padding:10px 12px;border-radius:8px;border:none;}
   .textinput:focus{outline:none;}
-  .themerow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
-  .tswatch{width:32px;height:32px;border-radius:8px;padding:0;cursor:pointer;}
+  .themerow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .tswatch{width:30px;height:30px;border-radius:8px;border:2px solid rgba(255,255,255,.55);padding:0;cursor:pointer;}
   .bkrow{display:flex;gap:8px;margin-top:6px;}
   .bkbtn{flex:1;font-size:14px;font-weight:700;padding:10px 6px;border-radius:8px;text-align:center;}
   .bkhint{font-size:12.5px;margin-top:9px;line-height:1.6;}
@@ -87,8 +87,8 @@
   .utext{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .utime{font-size:12px;font-weight:600;color:var(--ink-soft);flex-shrink:0;}
   .rechead{display:flex;justify-content:space-between;align-items:center;}
-  .recdel{flex-shrink:0;width:30px;height:30px;border-radius:8px;background:#F2F4F8;color:#8089A0;font-size:14px;font-weight:700;line-height:1;}
-  .recdel:active{background:#FBE9E7;color:var(--urgent);}
+  .recdel{flex-shrink:0;width:30px;height:30px;border-radius:7px;color:#fff;background:#C7CDDA;font-size:13px;font-weight:700;line-height:1;}
+  .recdel:active{background:var(--urgent);}
 
   /* form */
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:18px;}
@@ -108,9 +108,9 @@
   .editname{flex:1;font-size:14px;font-weight:600;color:var(--ink);}
   .delbtn{flex-shrink:0;font-size:12px;font-weight:700;color:var(--urgent);background:#FBE9E7;padding:7px 12px;border-radius:8px;}
   .edithint{font-size:12.5px;color:var(--ink-soft);margin-top:11px;line-height:1.55;}
-  input[type=color].colorswatch{-webkit-appearance:none;appearance:none;width:32px;height:32px;flex-shrink:0;border:none;border-radius:8px;padding:0;background:none;cursor:pointer;}
+  input[type=color].colorswatch{-webkit-appearance:none;appearance:none;width:30px;height:30px;flex-shrink:0;border:none;border-radius:8px;padding:0;background:none;cursor:pointer;}
   input[type=color].colorswatch::-webkit-color-swatch-wrapper{padding:0;}
-  input[type=color].colorswatch::-webkit-color-swatch{border:none;border-radius:8px;}
+  input[type=color].colorswatch::-webkit-color-swatch{border:1px solid rgba(0,0,0,.18);border-radius:8px;}
   .timerow{display:flex;align-items:center;gap:8px;}
   .numin{width:60px;text-align:center;background:var(--field);border:1px solid var(--line);border-radius:9px;padding:10px 4px;font-size:14px;color:var(--ink);}
   .numin:focus{outline:none;border-color:var(--brand);}
@@ -142,25 +142,25 @@
   .grandlbl{font-size:13px;font-weight:600;color:var(--ink-soft);}
   .grandnum{font-size:18px;font-weight:700;}
 
-  /* modal + confirm + toast */
+  /* modal / confirm / toast */
   .overlay{position:fixed;inset:0;background:rgba(18,22,38,.55);display:flex;align-items:flex-end;justify-content:center;z-index:50;animation:fade .2s ease;}
-  .overlay.ct{align-items:center;padding:24px;z-index:60;}
+  .overlay.center{align-items:center;padding:24px;z-index:60;}
   .modal{background:var(--card);width:100%;max-width:480px;border-radius:18px 18px 0 0;padding:20px 18px calc(22px + env(safe-area-inset-bottom));max-height:86vh;overflow:auto;animation:rise .25s ease;}
-  .cmodal{background:var(--card);width:100%;max-width:380px;border-radius:16px;padding:20px;animation:fade .2s ease;}
+  .modal.small{border-radius:16px;max-width:360px;width:auto;padding:22px 20px;}
   .mtitle{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--ink);}
   .mtext{font-size:13px;color:var(--ink-soft);line-height:1.65;margin-bottom:12px;}
-  .cbody{font-size:14px;color:var(--ink);line-height:1.65;white-space:pre-wrap;}
+  .cfmsg{font-size:15px;color:var(--ink);line-height:1.6;}
   .marea{width:100%;height:150px;font-family:"SF Mono","Roboto Mono",Menlo,monospace;font-size:11px;background:var(--field);border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--ink);resize:none;line-height:1.4;}
   .marea:focus{outline:none;border-color:var(--brand);}
-  .mbtns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .mbtns{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
   .mbtn{flex:1;min-width:104px;padding:13px;border-radius:10px;font-size:14px;font-weight:700;background:var(--brand);color:#fff;text-align:center;}
   .mbtn:active{opacity:.85;}
   .mbtn.sec{background:#EEF1F6;color:var(--ink);}
   .mbtn.danger{background:var(--urgent);}
-  .toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(12px);background:rgba(20,24,40,.96);color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:24px;z-index:100;opacity:0;transition:opacity .25s,transform .25s;max-width:88%;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.3);}
+  .toast{position:fixed;left:50%;bottom:36px;transform:translateX(-50%) translateY(16px);background:rgba(30,39,73,.96);color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:12px;z-index:100;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:86%;text-align:center;box-shadow:0 8px 28px rgba(0,0,0,.28);}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-  @media (prefers-reduced-motion: reduce){.body,.overlay,.modal,.cmodal{animation:none;}}
+  @media (prefers-reduced-motion: reduce){.body,.overlay,.modal{animation:none;}}
 </style>
 </head>
 <body>
@@ -217,22 +217,24 @@
   }
   function headerTheme(bg){
     const dark=luminance(bg)<0.5;
-    if(dark)return {bg:bg,main:'#ffffff',sub:'rgba(255,255,255,0.82)',faint:'rgba(255,255,255,0.6)',btn:'rgba(255,255,255,0.15)',panel:'rgba(255,255,255,0.08)',panelLabel:'rgba(255,255,255,0.9)',hint:'rgba(255,255,255,0.7)',low:'#FF8A7A',reset:'#FF8A7A',ring:'rgba(255,255,255,0.75)'};
-    return {bg:bg,main:'#1E2749',sub:'rgba(30,39,73,0.78)',faint:'rgba(30,39,73,0.5)',btn:'rgba(0,0,0,0.07)',panel:'rgba(0,0,0,0.05)',panelLabel:'rgba(30,39,73,0.85)',hint:'rgba(30,39,73,0.6)',low:'#C0392B',reset:'#C0392B',ring:'rgba(30,39,73,0.45)'};
+    if(dark)return {bg:bg,main:'#ffffff',sub:'rgba(255,255,255,0.82)',faint:'rgba(255,255,255,0.6)',btn:'rgba(255,255,255,0.15)',panel:'rgba(255,255,255,0.08)',panelLabel:'rgba(255,255,255,0.9)',hint:'rgba(255,255,255,0.7)',low:'#FF8A7A',reset:'#FF8A7A',swEdge:'rgba(255,255,255,0.75)'};
+    return {bg:bg,main:'#1E2749',sub:'rgba(30,39,73,0.78)',faint:'rgba(30,39,73,0.5)',btn:'rgba(0,0,0,0.07)',panel:'rgba(0,0,0,0.05)',panelLabel:'rgba(30,39,73,0.85)',hint:'rgba(30,39,73,0.6)',low:'#C0392B',reset:'#C0392B',swEdge:'rgba(30,39,73,0.4)'};
   }
+
+  /* lightweight in-app toast (works without native popups) */
+  let toastTimer=null;
   function toast(msg){
-    const old=document.getElementById('toast');if(old)old.remove();
-    const d=document.createElement('div');d.id='toast';d.className='toast';d.textContent=msg;
-    document.body.appendChild(d);
-    requestAnimationFrame(function(){d.classList.add('show');});
-    setTimeout(function(){d.classList.remove('show');setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},300);},2300);
+    let el=document.getElementById('toastBar');
+    if(!el){el=document.createElement('div');el.id='toastBar';el.className='toast';document.body.appendChild(el);}
+    el.textContent=msg;el.classList.add('show');
+    if(toastTimer)clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){el.classList.remove('show');},2200);
   }
 
   /* storage (localStorage + in-memory fallback) */
   function load(){try{const r=localStorage.getItem(STORAGE_KEY);if(r)return JSON.parse(r);}catch(e){}return null;}
   function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}catch(e){}}
   function defaultData(){return {school:DEFAULT_SCHOOL,themeColor:DEFAULT_THEME,subjects:DEFAULT_SUBJECTS.map(s=>({name:s.name,color:s.color})),entries:[],examDate:DEFAULT_EXAM,colorVer:COLOR_VER};}
-  function freshUi(){return {tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false,modal:null,modalText:'',showAllRecords:false,confirm:null};}
 
   let data=load()||defaultData();
   if(!data.subjects||!data.subjects.length)data.subjects=DEFAULT_SUBJECTS.map(s=>({name:s.name,color:s.color}));
@@ -251,18 +253,22 @@
     persist();
   }
 
-  let ui=freshUi();
+  let ui={tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false,modal:null,modalText:'',showAllRecords:false,confirm:null};
   let form={subjectIdx:0,content:'',hours:'',mins:'',date:todayISO()};
-  let pendingImport=null;
 
-  /* import (shared by text-paste and file): validate then ask to confirm */
+  /* import (shared by text-paste and file) */
   function applyImport(text){
     let obj;
-    try{obj=JSON.parse(text);}catch(e){toast('読み込めませんでした。文章が正しいかご確認ください');return;}
+    try{obj=JSON.parse(text);}catch(e){toast('読み込み失敗：文章が正しくない可能性があります');return;}
     if(!obj||!Array.isArray(obj.entries)||!Array.isArray(obj.subjects)){toast('このアプリのバックアップではないようです');return;}
-    pendingImport=obj;
-    ui.confirm={body:'現在の学習データを、このバックアップの内容で置き換えます。よろしいですか？',ok:'読み込む',danger:false,action:'import'};
-    render();
+    App.askConfirm('現在の学習データを、このバックアップの内容で置き換えます。よろしいですか？',function(){
+      data=obj;
+      if(!data.examDate)data.examDate=DEFAULT_EXAM;
+      if(typeof data.school!=='string')data.school=DEFAULT_SCHOOL;
+      if(typeof data.themeColor!=='string')data.themeColor=DEFAULT_THEME;
+      if(typeof data.colorVer!=='number')data.colorVer=COLOR_VER;
+      persist();ui.modal=null;ui.settingsOpen=false;render();toast('学習データを読み込みました');
+    },{yes:'置き換える'});
   }
 
   /* donut chart (manual SVG, no libraries) */
@@ -332,7 +338,7 @@
     if(ui.settingsOpen){
       const presets=THEME_PRESETS.map(c=>{
         const sel=c.toLowerCase()===(data.themeColor||'').toLowerCase();
-        return '<button class="tswatch" style="background:'+c+';border:2px solid '+t.ring+';'+(sel?'box-shadow:0 0 0 2px '+t.bg+',0 0 0 4px '+t.main+';':'')+'" onclick="App.setTheme(\''+c+'\')"></button>';
+        return '<button class="tswatch" style="background:'+c+';border-color:'+t.swEdge+';'+(sel?'box-shadow:0 0 0 2px '+t.bg+',0 0 0 4px '+t.main+';':'')+'" onclick="App.setTheme(\''+c+'\')"></button>';
       }).join('');
       h+='<div class="settings" style="background:'+t.panel+'">'+
         '<label class="slabel" style="color:'+t.panelLabel+'">志望校</label>'+
@@ -341,7 +347,7 @@
         '<input type="date" value="'+data.examDate+'" onchange="App.setExam(this.value)" class="dateinput light"/>'+
         '<p class="bkhint" style="color:'+t.hint+'">共通テストの正式な日程に合わせて設定してください。設定した日付をもとに、トップの残り日数が表示されます。</p>'+
         '<label class="slabel" style="color:'+t.panelLabel+';margin-top:16px">トップ画面の色</label>'+
-        '<div class="themerow">'+presets+'<input type="color" class="colorswatch" style="box-shadow:0 0 0 2px '+t.ring+'" value="'+(data.themeColor||DEFAULT_THEME)+'" onchange="App.setTheme(this.value)"/></div>'+
+        '<div class="themerow">'+presets+'<input type="color" class="colorswatch" value="'+(data.themeColor||DEFAULT_THEME)+'" onchange="App.setTheme(this.value)" style="box-shadow:0 0 0 2px '+t.swEdge+'"/></div>'+
         '<p class="bkhint" style="color:'+t.hint+'">並んだ色から選ぶか、右端の四角をタップして好きな色を選べます。文字色は自動で見やすく調整されます。</p>'+
         '<label class="slabel" style="color:'+t.panelLabel+';margin-top:16px">学習データのバックアップ</label>'+
         '<div class="bkrow">'+
@@ -349,7 +355,7 @@
           '<button class="bkbtn" style="color:'+t.main+';background:'+t.btn+'" onclick="App.openImport()">読み込む</button>'+
         '</div>'+
         '<p class="bkhint" style="color:'+t.hint+'">「書き出す」で学習データを保存し、「読み込む」で復元できます。機種変更やデータの消去に備えて、ときどき保存しておくと安心です。</p>'+
-        '<button class="reset" style="color:'+t.reset+'" onclick="App.askReset()">すべての学習データを削除する</button>'+
+        '<button class="reset" style="color:'+t.reset+'" onclick="App.reset()">すべての学習データを削除する</button>'+
         '</div>';
     }
     h+='</div>';
@@ -398,7 +404,7 @@
     }).join('');
     const editList=subs.map((s,i)=>
       '<div class="editrow">'+
-        '<input type="color" class="colorswatch" style="box-shadow:0 0 0 1px var(--line)" value="'+s.color+'" onchange="App.setSubColor('+i+',this.value)"/>'+
+        '<input type="color" class="colorswatch" value="'+s.color+'" onchange="App.setSubColor('+i+',this.value)"/>'+
         '<span class="editname">'+esc(s.name)+'</span>'+
         (subs.length>1?'<button class="delbtn" onclick="App.removeSub('+i+')">削除</button>':'')+
       '</div>').join('');
@@ -406,14 +412,14 @@
     const shown=ui.showAllRecords?all:all.slice(0,6);
     let recentHTML='';
     if(all.length){
-      recentHTML='<div class="sect"><div class="rechead"><h3 class="h3" style="margin:0">最近の記録</h3>'+
-        (all.length>6?'<button class="link" onclick="App.toggleAllRecords()">'+(ui.showAllRecords?'最近のみ表示':'すべて表示（'+all.length+'件）')+'</button>':'')+
+      recentHTML='<div class="sect"><div class="rechead"><h3 class="h3" style="margin:0">最近の記録（'+all.length+'件）</h3>'+
+        (all.length>6?'<button class="link" onclick="App.toggleAllRecords()">'+(ui.showAllRecords?'最近のみ表示':'すべて表示')+'</button>':'')+
         '</div><div class="list" style="margin-top:8px">'+shown.map(e=>
           '<div class="ucard"><span class="dot sm" style="background:'+e.color+'"></span>'+
           '<span class="udate">'+fmtMD(parseDate(e.date))+'</span>'+
           '<span class="utext">'+esc(e.content)+'</span>'+
           '<span class="utime mono">'+fmtMin(e.minutes)+'</span>'+
-          '<button class="recdel" onclick="App.askDelete(\''+e.id+'\')">✕</button></div>').join('')+
+          '<button class="recdel" onclick="App.deleteEntry(\''+e.id+'\')">✕</button></div>').join('')+
         '</div></div>';
     }
     return '<div class="card">'+
@@ -467,11 +473,11 @@
     let inner='';
     if(ui.modal==='export'){
       inner='<div class="mtitle">学習データの書き出し</div>'+
-        '<p class="mtext">下のテキストが、これまでの学習データです。「コピー」を押して、メモアプリやメール（自分宛て）などに貼り付けて保存してください。うまくコピーできない場合は、文章を長押しして選択し、コピーすることもできます。</p>'+
+        '<p class="mtext">下のテキストが、これまでの学習データです。「コピー」を押してから、メモアプリやメール（自分宛て）などに貼り付けて保存してください。復元するときは、この文章をそのまま使います。</p>'+
         '<textarea class="marea" id="modalText" readonly>'+esc(ui.modalText||'')+'</textarea>'+
         '<div class="mbtns">'+
           '<button class="mbtn" onclick="App.copyExport()">コピー</button>'+
-          (navigator.share?'<button class="mbtn sec" onclick="App.shareExport()">共有・保存</button>':'')+
+          '<button class="mbtn sec" onclick="App.shareExport()">共有・保存</button>'+
           '<button class="mbtn sec" onclick="App.closeModal()">閉じる</button>'+
         '</div>';
     }else if(ui.modal==='import'){
@@ -490,12 +496,11 @@
   function confirmHTML(){
     if(!ui.confirm)return '';
     const c=ui.confirm;
-    return '<div class="overlay ct" onclick="App.confirmCancel()"><div class="cmodal" onclick="event.stopPropagation()">'+
-      '<p class="cbody">'+esc(c.body)+'</p>'+
-      '<div class="mbtns">'+
-        '<button class="mbtn'+(c.danger?' danger':'')+'" onclick="App.confirmProceed()">'+esc(c.ok||'OK')+'</button>'+
-        '<button class="mbtn sec" onclick="App.confirmCancel()">キャンセル</button>'+
-      '</div></div></div>';
+    return '<div class="overlay center" onclick="App.confirmNo()"><div class="modal small" onclick="event.stopPropagation()">'+
+      '<p class="cfmsg">'+esc(c.message).replace(/\n/g,'<br>')+'</p>'+
+      '<div class="mbtns"><button class="mbtn sec" onclick="App.confirmNo()">キャンセル</button>'+
+      '<button class="mbtn'+(c.danger?' danger':'')+'" onclick="App.confirmYes()">'+esc(c.yes||'OK')+'</button></div>'+
+      '</div></div>';
   }
 
   function render(){
@@ -529,33 +534,17 @@
     setExam(v){data.examDate=v;persist();render();},
     setSchool(v){data.school=v.trim();persist();render();},
     setTheme(v){data.themeColor=v;persist();render();},
-    askReset(){ui.confirm={body:'すべての学習データを削除します。この操作は取り消せません。\n\n念のため、先に「書き出す」でバックアップを取っておくことをおすすめします。本当に削除しますか？',ok:'すべて削除する',danger:true,action:'reset'};render();},
-    markDone(id,key){const e=data.entries.find(x=>x.id===id);if(e){e.reviews[key]=true;persist();render();}},
-    askDelete(id){const e=data.entries.find(x=>x.id===id);if(!e)return;ui.confirm={body:'この記録を削除します。よろしいですか？\n\n'+e.subject+'：'+e.content+'（'+fmtMin(e.minutes)+'）',ok:'削除する',danger:true,action:'delete',arg:id};render();},
-    confirmCancel(){if(ui.confirm&&ui.confirm.action==='import')pendingImport=null;ui.confirm=null;render();},
-    confirmProceed(){
-      const c=ui.confirm;ui.confirm=null;
-      if(!c){render();return;}
-      if(c.action==='delete'){
-        data.entries=data.entries.filter(x=>x.id!==c.arg);persist();render();toast('記録を削除しました');
-      }else if(c.action==='reset'){
-        data=defaultData();ui=freshUi();form={subjectIdx:0,content:'',hours:'',mins:'',date:todayISO()};persist();render();toast('データを初期化しました');
-      }else if(c.action==='import'){
-        if(pendingImport){
-          data=pendingImport;pendingImport=null;
-          if(!data.examDate)data.examDate=DEFAULT_EXAM;
-          if(typeof data.school!=='string')data.school=DEFAULT_SCHOOL;
-          if(typeof data.themeColor!=='string')data.themeColor=DEFAULT_THEME;
-          if(typeof data.colorVer!=='number')data.colorVer=COLOR_VER;
-          persist();ui.modal=null;ui.settingsOpen=false;render();toast('学習データを読み込みました');
-        }else{render();}
-      }else{render();}
-    },
+    askConfirm(message,onYes,opts){ui.confirm={message:message,onYes:onYes,yes:(opts&&opts.yes)||'OK',danger:!!(opts&&opts.danger)};render();},
+    confirmYes(){const f=ui.confirm&&ui.confirm.onYes;ui.confirm=null;render();if(typeof f==='function')f();},
+    confirmNo(){ui.confirm=null;render();},
+    reset(){App.askConfirm('すべての学習データを削除します。この操作は取り消せません。\n\n念のため、先に「書き出す」でバックアップを取っておくことをおすすめします。',function(){data=defaultData();ui={tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false,modal:null,modalText:'',showAllRecords:false,confirm:null};form={subjectIdx:0,content:'',hours:'',mins:'',date:todayISO()};persist();render();toast('すべてのデータを削除しました');},{yes:'削除する',danger:true});},
+    markDone(id,key){const e=data.entries.find(x=>x.id===id);if(e){e.reviews[key]=true;persist();render();toast('復習を1件完了にしました');}},
+    deleteEntry(id){const e=data.entries.find(x=>x.id===id);if(!e)return;App.askConfirm('この記録を削除します。よろしいですか？\n\n'+e.subject+'：'+e.content+'（'+fmtMin(e.minutes)+'）',function(){data.entries=data.entries.filter(x=>x.id!==id);persist();render();toast('記録を削除しました');},{yes:'削除する',danger:true});},
     toggleAllRecords(){ui.showAllRecords=!ui.showAllRecords;render();},
     pickSub(i){form.subjectIdx=i;render();},
     toggleEdit(){ui.editSubjects=!ui.editSubjects;render();},
-    addSub(){const el=document.getElementById('newsub');if(!el)return;const name=el.value.trim();if(!name||data.subjects.some(s=>s.name===name))return;const color=FALLBACK[data.subjects.length%FALLBACK.length];data.subjects.push({name,color});form.subjectIdx=data.subjects.length-1;persist();render();},
-    removeSub(i){if(data.subjects.length<=1)return;data.subjects.splice(i,1);if(form.subjectIdx>=data.subjects.length)form.subjectIdx=data.subjects.length-1;persist();render();},
+    addSub(){const el=document.getElementById('newsub');if(!el)return;const name=el.value.trim();if(!name){toast('科目名を入力してください');return;}if(data.subjects.some(s=>s.name===name)){toast('同じ名前の科目があります');return;}const color=FALLBACK[data.subjects.length%FALLBACK.length];data.subjects.push({name,color});form.subjectIdx=data.subjects.length-1;persist();render();toast('科目を追加しました');},
+    removeSub(i){if(data.subjects.length<=1){toast('科目は1つ以上必要です');return;}data.subjects.splice(i,1);if(form.subjectIdx>=data.subjects.length)form.subjectIdx=data.subjects.length-1;persist();render();},
     setSubColor(i,color){const s=data.subjects[i];if(!s)return;const nm=s.name;s.color=color;data.entries.forEach(e=>{if(e.subject===nm)e.color=color;});persist();render();},
     setF(f,v){form[f]=v;refresh();},
     quick(m){form.hours=String(Math.floor(m/60));form.mins=String(m%60);render();},
@@ -566,7 +555,7 @@
       const minutes=(parseInt(form.hours)||0)*60+(parseInt(form.mins)||0);
       data.entries.push({id:uid(),subject:s.name,color:s.color,content:form.content.trim(),minutes,date:form.date,createdAt:new Date().toISOString(),reviews:{day1:false,week1:false,month1:false}});
       form.content='';form.hours='';form.mins='';
-      persist();render();toast('記録しました');
+      persist();render();toast('学習を記録しました');
     },
     setRange(r){ui.statsRange=r;render();},
     openExport(){ui.modalText=JSON.stringify(data,null,2);ui.modal='export';render();},
@@ -575,27 +564,27 @@
     copyExport(){
       const txt=ui.modalText||'';
       const ta=document.getElementById('modalText');
-      if(ta){ta.focus();ta.select();try{ta.setSelectionRange(0,txt.length);}catch(e){}}
-      const ok=function(){toast('コピーしました');};
-      const ng=function(){toast('自動コピーできませんでした。文章を長押しして選択しコピーしてください');};
+      if(ta){ta.focus();ta.select();try{ta.setSelectionRange(0,ta.value.length);}catch(e){}}
       if(navigator.clipboard&&navigator.clipboard.writeText){
-        navigator.clipboard.writeText(txt).then(ok).catch(function(){
-          try{if(document.execCommand('copy'))ok();else ng();}catch(e){ng();}
+        navigator.clipboard.writeText(txt).then(function(){toast('コピーしました');}).catch(function(){
+          let ok=false;try{ok=document.execCommand('copy');}catch(e){}
+          toast(ok?'コピーしました':'上の文章を長押しで全選択してコピーしてください');
         });
       }else{
-        try{if(document.execCommand('copy'))ok();else ng();}catch(e){ng();}
+        let ok=false;try{ok=document.execCommand('copy');}catch(e){}
+        toast(ok?'コピーしました':'上の文章を長押しで全選択してコピーしてください');
       }
     },
     async shareExport(){
       const txt=ui.modalText||'';
+      if(!navigator.share){toast('この画面では共有を使えません。「コピー」をご利用ください');return;}
       try{
         const file=new File([txt],'study-tracker-backup.json',{type:'application/json'});
         if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'学習データのバックアップ'});return;}
-        if(navigator.share){await navigator.share({text:txt,title:'学習データのバックアップ'});return;}
-        toast('この画面では共有を使えません。「コピー」で保存してください');
+        await navigator.share({text:txt,title:'学習データのバックアップ'});
       }catch(e){
         if(e&&e.name==='AbortError')return;
-        toast('共有できませんでした。「コピー」で保存してください');
+        toast('共有を開けませんでした。「コピー」をご利用ください');
       }
     },
     doImportText(){
