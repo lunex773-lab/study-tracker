@@ -11,7 +11,7 @@
 <style>
   :root{
     --ink:#1E2749; --ink-soft:#5A6486; --paper:#EDEFF4; --card:#fff;
-    --line:#D9DDE7; --brand:#3B5BA5; --urgent:#D7574B; --field:#F7F8FB;
+    --line:#D9DDE7; --brand:#3B5BA5; --urgent:#D7574B; --field:#F7F8FB; --ok:#2F7A52;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
   body{
@@ -123,9 +123,10 @@
   .preview{font-size:12.5px;color:var(--ink-soft);text-align:center;line-height:1.5;}
 
   /* stats */
-  .toggle{display:inline-flex;background:#E3E7EF;border:1px solid var(--line);border-radius:10px;padding:3px;margin-bottom:16px;}
-  .tg{font-size:12px;font-weight:700;color:var(--ink-soft);padding:6px 12px;border-radius:7px;}
+  .toggle{display:inline-flex;background:#E3E7EF;border:1px solid var(--line);border-radius:10px;padding:3px;margin-bottom:8px;}
+  .tg{font-size:12.5px;font-weight:700;color:var(--ink-soft);padding:7px 13px;border-radius:7px;}
   .tg.on{background:var(--card);color:var(--ink);}
+  .pcap{font-size:12px;color:var(--ink-soft);margin:0 2px 14px;}
   .totwrap{text-align:center;}
   .totlbl{font-size:12px;font-weight:600;color:var(--ink-soft);}
   .totnum{font-size:30px;font-weight:700;letter-spacing:-.01em;}
@@ -141,6 +142,24 @@
   .grand{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;}
   .grandlbl{font-size:13px;font-weight:600;color:var(--ink-soft);}
   .grandnum{font-size:18px;font-weight:700;}
+
+  /* summer goal */
+  .card.gcard{gap:12px;margin-bottom:16px;}
+  .ghead{display:flex;justify-content:space-between;align-items:center;}
+  .gtitle{font-size:13px;font-weight:700;color:var(--ink-soft);}
+  .gtext{font-size:12.5px;color:var(--ink-soft);line-height:1.6;}
+  .grow{display:flex;align-items:center;gap:8px;}
+  .ginput{width:92px;}
+  .gactions{display:flex;gap:18px;}
+  .gmain{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .gpct{font-size:26px;font-weight:700;letter-spacing:-.01em;}
+  .gnums{font-size:13px;color:var(--ink);font-weight:600;}
+  .gbar{height:10px;border-radius:999px;background:#EEF0F4;overflow:hidden;}
+  .gfill{display:block;height:100%;background:var(--brand);}
+  .gfill.okbar{background:var(--ok);}
+  .gsub{font-size:12.5px;color:var(--ink-soft);line-height:1.7;}
+  .gok{color:var(--ok);font-weight:700;}
+  .gwarn{color:var(--urgent);font-weight:700;}
 
   /* modal / confirm / toast */
   .overlay{position:fixed;inset:0;background:rgba(18,22,38,.55);display:flex;align-items:flex-end;justify-content:center;z-index:50;animation:fade .2s ease;}
@@ -189,6 +208,8 @@
   const DEFAULT_SCHOOL='神戸大学';
   const DEFAULT_THEME='#1E2749';
   const THEME_PRESETS=['#1E2749','#222831','#17352B','#3A2342','#13324A','#3A2018'];
+  const SUMMER_START='2026-07-01';
+  const SUMMER_END='2026-08-31';
   const COLOR_VER=2;
   const OLD_DEFAULTS={'国語':'#C0504D','数学IA':'#3B5BA5','数学IIBC':'#6E8FD6','英語リーディング':'#2F7A52','英語リスニング':'#5FA88F','物理基礎':'#E0A458','化学基礎':'#8E6FB0','地理総合':'#5B9279','政治経済':'#9A7B4F','情報':'#4A4E69'};
   const STAGES=[
@@ -234,7 +255,7 @@
   /* storage (localStorage + in-memory fallback) */
   function load(){try{const r=localStorage.getItem(STORAGE_KEY);if(r)return JSON.parse(r);}catch(e){}return null;}
   function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}catch(e){}}
-  function defaultData(){return {school:DEFAULT_SCHOOL,themeColor:DEFAULT_THEME,subjects:DEFAULT_SUBJECTS.map(s=>({name:s.name,color:s.color})),entries:[],examDate:DEFAULT_EXAM,colorVer:COLOR_VER};}
+  function defaultData(){return {school:DEFAULT_SCHOOL,themeColor:DEFAULT_THEME,summerGoalHours:null,subjects:DEFAULT_SUBJECTS.map(s=>({name:s.name,color:s.color})),entries:[],examDate:DEFAULT_EXAM,colorVer:COLOR_VER};}
 
   let data=load()||defaultData();
   if(!data.subjects||!data.subjects.length)data.subjects=DEFAULT_SUBJECTS.map(s=>({name:s.name,color:s.color}));
@@ -242,6 +263,7 @@
   if(!data.examDate)data.examDate=DEFAULT_EXAM;
   if(typeof data.school!=='string')data.school=DEFAULT_SCHOOL;
   if(typeof data.themeColor!=='string')data.themeColor=DEFAULT_THEME;
+  if(!(typeof data.summerGoalHours==='number'&&data.summerGoalHours>0))data.summerGoalHours=null;
   if(data.colorVer!==COLOR_VER){
     const nd={};DEFAULT_SUBJECTS.forEach(s=>nd[s.name]=s.color);
     data.subjects.forEach(s=>{
@@ -253,7 +275,7 @@
     persist();
   }
 
-  let ui={tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false,modal:null,modalText:'',showAllRecords:false,confirm:null};
+  let ui={tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false,modal:null,modalText:'',showAllRecords:false,confirm:null,editGoal:false};
   let form={subjectIdx:0,content:'',hours:'',mins:'',date:todayISO()};
 
   /* import (shared by text-paste and file) */
@@ -267,6 +289,7 @@
       if(typeof data.school!=='string')data.school=DEFAULT_SCHOOL;
       if(typeof data.themeColor!=='string')data.themeColor=DEFAULT_THEME;
       if(typeof data.colorVer!=='number')data.colorVer=COLOR_VER;
+      if(!(typeof data.summerGoalHours==='number'&&data.summerGoalHours>0))data.summerGoalHours=null;
       persist();ui.modal=null;ui.settingsOpen=false;render();toast('学習データを読み込みました');
     },{yes:'置き換える'});
   }
@@ -307,14 +330,19 @@
     return {due,up};
   }
   function dueCount(){return dueItems().due.length;}
+  function rangeWindow(range){
+    const todayT=startOfDay(new Date()).getTime();
+    if(range==='week')return {from:todayT-6*DAY,to:todayT};
+    if(range==='month')return {from:todayT-29*DAY,to:todayT};
+    if(range==='summer')return {from:startOfDay(parseDate(SUMMER_START)).getTime(),to:startOfDay(parseDate(SUMMER_END)).getTime()};
+    return {from:-Infinity,to:Infinity};
+  }
   function statsData(){
-    const days=ui.statsRange==='week'?7:30;
-    const today=startOfDay(new Date()).getTime();
-    const from=today-(days-1)*DAY;
+    const w=rangeWindow(ui.statsRange);
     const map={};let total=0;
     data.entries.forEach(e=>{
       const d=startOfDay(parseDate(e.date)).getTime();
-      if(d<from||d>today)return;
+      if(d<w.from||d>w.to)return;
       if(!map[e.subject])map[e.subject]={name:e.subject,color:e.color,minutes:0};
       map[e.subject].minutes+=e.minutes;total+=e.minutes;
     });
@@ -443,12 +471,70 @@
       '<p class="preview" id="prev"></p>'+
       '</div>'+recentHTML;
   }
+  function summerGoalHTML(done){
+    const goalH=data.summerGoalHours;
+    const hasGoal=typeof goalH==='number'&&goalH>0;
+    if(!hasGoal||ui.editGoal){
+      return '<div class="card gcard">'+
+        '<div class="ghead"><span class="gtitle">夏期の目標学習時間</span></div>'+
+        '<p class="gtext">夏休み全体（7月1日〜8月31日）の目標を時間で設定すると、達成に必要な1日あたりのペースを自動で計算します。予備校の課題量から逆算して決めるのがおすすめです。</p>'+
+        '<div class="grow"><input id="goalInput" type="number" min="1" max="9999" inputmode="numeric" class="numin ginput" placeholder="例：300" value="'+(hasGoal?goalH:'')+'"/><span class="unit">時間</span>'+
+        '<button class="addbtn" onclick="App.setGoal()">'+(hasGoal?'保存':'設定する')+'</button></div>'+
+        (hasGoal?'<div class="gactions"><button class="link" onclick="App.cancelGoalEdit()">キャンセル</button><button class="link" style="color:var(--urgent)" onclick="App.clearGoal()">目標を削除</button></div>':'')+
+        '</div>';
+    }
+    const goalMin=goalH*60;
+    const pct=Math.round(done/goalMin*100);
+    const achieved=done>=goalMin;
+    const today=startOfDay(new Date()).getTime();
+    const sStart=startOfDay(parseDate(SUMMER_START)).getTime();
+    const sEnd=startOfDay(parseDate(SUMMER_END)).getTime();
+    let remainDays=0;
+    if(today<sStart)remainDays=Math.round((sEnd-sStart)/DAY)+1;
+    else if(today<=sEnd)remainDays=Math.round((sEnd-today)/DAY)+1;
+    const remainMin=Math.max(0,goalMin-done);
+    let avg=null;
+    if(today>=sStart){
+      const elapsed=Math.round((Math.min(today,sEnd)-sStart)/DAY)+1;
+      if(elapsed>0)avg=Math.round(done/elapsed);
+    }
+    let lines=[];
+    if(achieved){
+      lines.push('<span class="gok">目標を達成しました。</span>この調子で最後まで積み上げていきましょう。');
+      if(avg!==null)lines.push('これまでの1日平均：'+fmtMin(avg));
+    }else if(remainDays>0){
+      const need=Math.ceil(remainMin/remainDays);
+      lines.push('残り <b>'+remainDays+'日</b> ・ 1日あたり <b>約'+fmtMin(need)+'</b> のペースで達成できます。');
+      if(avg!==null){
+        const judge=avg>=need?'<span class="gok">今の平均ペースを保てば達成できます。</span>':'<span class="gwarn">達成には今よりペースを上げる必要があります。</span>';
+        lines.push('これまでの1日平均は '+fmtMin(avg)+' — '+judge);
+      }
+    }else{
+      lines.push('夏休みの期間（8月31日まで）は終了しました。');
+      if(avg!==null)lines.push('期間中の1日平均：'+fmtMin(avg));
+    }
+    return '<div class="card gcard">'+
+      '<div class="ghead"><span class="gtitle">夏期の目標</span><button class="link" onclick="App.editGoal()">変更</button></div>'+
+      '<div><div class="gmain"><span class="gpct mono" style="color:'+(achieved?'var(--ok)':'var(--ink)')+'">'+pct+'%</span>'+
+      '<span class="gnums mono">'+fmtMin(done)+' ／ '+goalH+'時間</span></div>'+
+      '<div class="gbar" style="margin-top:9px"><span class="gfill'+(achieved?' okbar':'')+'" style="width:'+Math.min(100,pct)+'%"></span></div></div>'+
+      '<p class="gsub">'+lines.join('<br>')+'</p>'+
+      '</div>';
+  }
   function statsHTML(){
     const s=statsData();
     const grand=data.entries.reduce((a,e)=>a+e.minutes,0);
-    const toggle='<div class="toggle">'+
-      '<button class="tg'+(ui.statsRange==='week'?' on':'')+'" onclick="App.setRange(\'week\')">今週（7日間）</button>'+
-      '<button class="tg'+(ui.statsRange==='month'?' on':'')+'" onclick="App.setRange(\'month\')">今月（30日間）</button></div>';
+    const ranges=[['week','今週'],['month','今月'],['summer','夏期'],['all','累計']];
+    const toggle='<div class="toggle">'+ranges.map(r=>
+      '<button class="tg'+(ui.statsRange===r[0]?' on':'')+'" onclick="App.setRange(\''+r[0]+'\')">'+r[1]+'</button>').join('')+'</div>';
+    const captions={
+      week:'直近7日間の記録です（今日を含みます）。',
+      month:'直近30日間の記録です（今日を含みます）。',
+      summer:'夏休み期間（7月1日〜8月31日）の記録です。',
+      all:'これまでに記録したすべての学習が対象です。'
+    };
+    const cap='<p class="pcap">'+captions[ui.statsRange]+'</p>';
+    const goal=ui.statsRange==='summer'?summerGoalHTML(s.total):'';
     let body;
     if(!s.slices.length){
       body='<div class="card"><div class="empty">この期間の学習記録はまだありません。<br>学習を記録すると、ここに科目別の割合がグラフで表示されます。</div></div>';
@@ -465,8 +551,8 @@
         '<div class="donutwrap">'+donut(s.slices,s.total)+'</div>'+
         '<div class="legend">'+legend+'</div></div>';
     }
-    return toggle+body+
-      '<div class="grand"><span class="grandlbl">これまでの総学習時間</span><span class="grandnum mono">'+fmtMin(grand)+'</span></div>';
+    const grandCard=ui.statsRange==='all'?'':'<div class="grand"><span class="grandlbl">これまでの総学習時間</span><span class="grandnum mono">'+fmtMin(grand)+'</span></div>';
+    return toggle+cap+goal+body+grandCard;
   }
   function modalHTML(){
     if(!ui.modal)return '';
@@ -537,7 +623,7 @@
     askConfirm(message,onYes,opts){ui.confirm={message:message,onYes:onYes,yes:(opts&&opts.yes)||'OK',danger:!!(opts&&opts.danger)};render();},
     confirmYes(){const f=ui.confirm&&ui.confirm.onYes;ui.confirm=null;render();if(typeof f==='function')f();},
     confirmNo(){ui.confirm=null;render();},
-    reset(){App.askConfirm('すべての学習データを削除します。この操作は取り消せません。\n\n念のため、先に「書き出す」でバックアップを取っておくことをおすすめします。',function(){data=defaultData();ui={tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false,modal:null,modalText:'',showAllRecords:false,confirm:null};form={subjectIdx:0,content:'',hours:'',mins:'',date:todayISO()};persist();render();toast('すべてのデータを削除しました');},{yes:'削除する',danger:true});},
+    reset(){App.askConfirm('すべての学習データを削除します。この操作は取り消せません。\n\n念のため、先に「書き出す」でバックアップを取っておくことをおすすめします。',function(){data=defaultData();ui={tab:'review',editSubjects:false,statsRange:'week',settingsOpen:false,modal:null,modalText:'',showAllRecords:false,confirm:null,editGoal:false};form={subjectIdx:0,content:'',hours:'',mins:'',date:todayISO()};persist();render();toast('すべてのデータを削除しました');},{yes:'削除する',danger:true});},
     markDone(id,key){const e=data.entries.find(x=>x.id===id);if(e){e.reviews[key]=true;persist();render();toast('復習を1件完了にしました');}},
     deleteEntry(id){const e=data.entries.find(x=>x.id===id);if(!e)return;App.askConfirm('この記録を削除します。よろしいですか？\n\n'+e.subject+'：'+e.content+'（'+fmtMin(e.minutes)+'）',function(){data.entries=data.entries.filter(x=>x.id!==id);persist();render();toast('記録を削除しました');},{yes:'削除する',danger:true});},
     toggleAllRecords(){ui.showAllRecords=!ui.showAllRecords;render();},
@@ -557,7 +643,17 @@
       form.content='';form.hours='';form.mins='';
       persist();render();toast('学習を記録しました');
     },
-    setRange(r){ui.statsRange=r;render();},
+    setRange(r){ui.statsRange=r;ui.editGoal=false;render();},
+    editGoal(){ui.editGoal=true;render();},
+    cancelGoalEdit(){ui.editGoal=false;render();},
+    setGoal(){
+      const el=document.getElementById('goalInput');
+      if(!el)return;
+      const v=parseInt(el.value,10);
+      if(!v||v<1||v>9999){toast('目標は 1〜9999 の整数（時間）で入力してください');return;}
+      data.summerGoalHours=v;ui.editGoal=false;persist();render();toast('夏期の目標を '+v+'時間 に設定しました');
+    },
+    clearGoal(){data.summerGoalHours=null;ui.editGoal=false;persist();render();toast('夏期の目標を削除しました');},
     openExport(){ui.modalText=JSON.stringify(data,null,2);ui.modal='export';render();},
     openImport(){ui.modal='import';render();},
     closeModal(){ui.modal=null;render();},
